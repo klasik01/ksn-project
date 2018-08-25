@@ -8,5 +8,12 @@ public interface UserDao {
 
     public List<UserEntity> getUsers();
 
-    public boolean saveUser(UserEntity userEntity);
+    public UserEntity save(UserEntity entity);
+
+    public List<UserEntity> findUsersByFirstnameQueryDSL(final String firstname);
+
+    public List<UserEntity> findUsersByFirstnameAndSurnameQueryDSL(final String firstname, final String surname);
+
+    public List<UserEntity> findUsersByEmailrQueryDSL(final String email);
+
 }
