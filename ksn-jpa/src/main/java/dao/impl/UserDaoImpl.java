@@ -2,6 +2,7 @@ package dao.impl;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import dao.interfaces.UserDao;
+import entity.ArticleEntity;
 import entity.QUserEntity;
 import entity.UserEntity;
 import util.PersistenceManager;
@@ -9,6 +10,7 @@ import util.PersistenceManager;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.UUID;
 
 public class UserDaoImpl implements UserDao {
 

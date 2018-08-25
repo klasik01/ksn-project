@@ -16,13 +16,13 @@ public class main {
 
         UserEntity newUser = new UserEntity();
         newUser.setId(UUID.randomUUID().toString());
-        newUser.setName("Helena");
+        newUser.setName("Klara");
         newUser.setSurname("Koubikova");
-        newUser.setEmail("koubice@mail.com");
+        newUser.setEmail("koubice@email.com");
         newUser.setPassword("Heslo5");
         newUser.setActive(false);
 
-        dao.save(newUser);
+        //dao.save(newUser);
 
         (dao.findUsersByFirstnameQueryDSL("Stanislav")).forEach(user -> System.out.println(user.toString()));
 
