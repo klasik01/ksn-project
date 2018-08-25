@@ -1,0 +1,6 @@
+dao\impl\UserDaoImpl.class
+entity\UserEntity.class
+main.class
+dao\interfaces\UserDao.class
+util\PersistenceManager.class
+entity\AbstractEntity.class
