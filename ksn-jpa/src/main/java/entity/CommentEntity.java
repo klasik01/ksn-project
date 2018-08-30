@@ -20,17 +20,15 @@ public class CommentEntity extends AbstractEntity {
     @Column(name = "art02_date")
     private Timestamp date;
 
-    @Column(name = "art02_author")
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "art02_author")
+    private UserEntity author;
 
-    @Column(name = "art02_article")
-    private String article;
+    @ManyToOne
+    @JoinColumn(name = "art02_article")
+    private ArticleEntity article;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "art02_author")
-//    private UserEntity userEntity;
-
-    public CommentEntity(String id, String content, String author, Timestamp date, String article) {
+    public CommentEntity(String id, String content, UserEntity author, Timestamp date, ArticleEntity article) {
         super(id);
         this.content = content;
         this.author = author;
@@ -47,7 +45,7 @@ public class CommentEntity extends AbstractEntity {
     }
 
     @Override
-    boolean testInstanceEntity() {
-        return false;
+    boolean testInstanceEntity(Object other) {
+        return other instanceof CommentEntity;
     }
 }

@@ -2,15 +2,14 @@ package entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.util.UUID;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @MappedSuperclass
-public abstract class AbstractEntity {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SuppressWarnings("serial")
+public abstract class AbstractEntity implements Serializable {
 
     @Id
     @Column (name = "table_id")
@@ -23,5 +22,33 @@ public abstract class AbstractEntity {
     protected AbstractEntity() {
     }
 
-    abstract boolean testInstanceEntity();
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (getId() == null) {
+            return false;
+        }
+        if (!testInstanceEntity(other)) {
+            return false;
+        }
+        if (other == null) {
+            return false;
+        }
+        AbstractEntity otherEntity = (AbstractEntity) other;// NOSONAR
+        if (!otherEntity.testInstanceEntity(this)) {
+            return false;
+        }
+
+        return getId().equals(otherEntity.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
+    }
+
+
+    abstract boolean testInstanceEntity(Object other);
 }
