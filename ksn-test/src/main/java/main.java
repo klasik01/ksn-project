@@ -1,6 +1,6 @@
-import ejb.article.ArticleManager;
-import ejb.article.CommentManager;
-import ejb.article.UserManager;
+import ejb.ArticleManager;
+import ejb.CommentManager;
+import ejb.UserManager;
 import entity.ArticleEntity;
 import entity.CommentEntity;
 import entity.UserEntity;
