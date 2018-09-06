@@ -21,6 +21,7 @@
         <module>../ksn-test</module>
         <module>../ksn-rest</module>
         <module>../ksn-dto</module>
+        <module>../ksn-dao</module>
     </modules>
 
     <dependencyManagement>
@@ -29,6 +30,18 @@
             <dependency>
                 <groupId>klasik.source</groupId>
                 <artifactId>ksn-jpa</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>klasik.source</groupId>
+                <artifactId>ksn-dao</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>klasik.source</groupId>
+                <artifactId>ksn-dto</artifactId>
                 <version>1.0</version>
             </dependency>
 

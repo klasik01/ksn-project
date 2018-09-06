@@ -1,7 +1,6 @@
 package dto;
 
 import entity.UserEntity;
-import model.LinkType;
 
 import java.util.ArrayList;
 import java.util.List;

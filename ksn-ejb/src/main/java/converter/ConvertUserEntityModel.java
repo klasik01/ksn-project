@@ -2,13 +2,13 @@ package converter;
 
 import dto.LinksCalculator;
 import entity.UserEntity;
-import model.User;
+import rs.user.User;
 
 import java.util.UUID;
 
 public class ConvertUserEntityModel {
 
-    public User convertEntityToModel(UserEntity entity) {
+    public static User convertEntityToModel(UserEntity entity) {
         User model = new User();
         model.setId(UUID.fromString(entity.getId()));
         model.setName(entity.getName());

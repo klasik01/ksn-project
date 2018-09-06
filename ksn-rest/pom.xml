@@ -26,6 +26,18 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>klasik.source</groupId>
+            <artifactId>ksn-ejb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>klasik.source</groupId>
+            <artifactId>ksn-dao</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>

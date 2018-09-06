@@ -1,9 +1,11 @@
 package ejb;
 
 import com.querydsl.jpa.impl.JPAQuery;
+import converter.ConvertUserEntityModel;
 import entity.QUserEntity;
 import entity.UserEntity;
 import lombok.NoArgsConstructor;
+import rs.user.User;
 
 import javax.ejb.*;
 import java.util.List;
@@ -54,5 +56,15 @@ public class UserManager extends AbstractEntityManager {
         final QUserEntity user = QUserEntity.userEntity;
 
         return query.from(user).where(user.email.eq(email)).fetch();
+    }
+
+    public User findUserById(final String id) {
+        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
+        final QUserEntity user = QUserEntity.userEntity;
+
+        UserEntity en = query.from(user).where(user.id.eq(id)).fetchOne();
+
+        User converUser = ConvertUserEntityModel.convertEntityToModel(en);
+        return converUser;
     }
 }

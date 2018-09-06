@@ -1,4 +1,4 @@
-package model;
+package dto;
 
 import dto.LinkTypeEnum;
 import lombok.AllArgsConstructor;

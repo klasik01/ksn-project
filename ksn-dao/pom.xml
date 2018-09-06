@@ -2,15 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>klasik.source</groupId>
+    <artifactId>ksn-dao</artifactId>
+    <version>1.0</version>
+
     <parent>
         <artifactId>ksn-parent</artifactId>
         <groupId>klasik.source</groupId>
         <version>1.0</version>
         <relativePath>../ksn-parent/pom.xml</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>ksn-dto</artifactId>
-    <version>1.0</version>
 
     <dependencies>
         <dependency>
@@ -22,6 +25,11 @@
             <groupId>klasik.source</groupId>
             <artifactId>ksn-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>klasik.source</groupId>
+            <artifactId>ksn-dto</artifactId>
+        </dependency>
     </dependencies>
+
 
 </project>
