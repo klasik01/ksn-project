@@ -1,13 +1,16 @@
 package ejb;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQuery;
-import converter.ConvertUserEntityModel;
 import entity.QUserEntity;
 import entity.UserEntity;
 import lombok.NoArgsConstructor;
 import rs.user.User;
+import rs.user.Users;
 
 import javax.ejb.*;
+import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor
@@ -15,7 +18,7 @@ import java.util.List;
 //@Interceptors({MeasuringInterceptor.class, LoggingInterceptor.class})
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 @TransactionAttribute(value = TransactionAttributeType.REQUIRED)
-public class UserManager extends AbstractEntityManager {
+public class UserManager extends AbstractQueryManager {
 
     public List<UserEntity> getUsers() {
         final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
@@ -58,13 +61,30 @@ public class UserManager extends AbstractEntityManager {
         return query.from(user).where(user.email.eq(email)).fetch();
     }
 
-    public User findUserById(final String id) {
-        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
-        final QUserEntity user = QUserEntity.userEntity;
+    public Users loadUsers() {
+        QUserEntity user = QUserEntity.userEntity;
+        BooleanExpression condition = Expressions.asBoolean(true).isTrue();
+        JPAQuery query = createBaseQuery(condition, user);
+        query.orderBy(user.surname.asc());
+        query.distinct();
 
-        UserEntity en = query.from(user).where(user.id.eq(id)).fetchOne();
-
-        User converUser = ConvertUserEntityModel.convertEntityToModel(en);
-        return converUser;
+        return Users.builder()
+                //.messages(messages)
+                .total((int) query.fetchCount())
+                .users(loadUsers(paging(query, 2, 2)))
+                .build();
     }
+
+    public User loadUser(final String id) {
+        final QUserEntity user = QUserEntity.userEntity;
+        final BooleanExpression condition = Expressions.asBoolean(true).isTrue();
+        final JPAQuery<UserEntity> query = createBaseQuery(condition, user);
+        return null; //UserEntityConverter.toDto(query.fetchOne());
+    }
+
+    private List<UserEntity> loadUsers(JPAQuery select) {
+        return select.fetch();
+    }
+
+
 }

@@ -1,18 +1,24 @@
 package rs.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import entity.UserEntity;
+import lombok.*;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@AllArgsConstructor
+@ToString
 public class Users {
-
     private int total;
-    private List<User> users;
+    private List<UserEntity> users;
 }

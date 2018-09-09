@@ -1,13 +1,13 @@
 package dto;
 
-import entity.UserEntity;
+import entity.ArticleEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinksCalculator {
+public class LinksArticleCalculator {
 
-    public static List<LinkType> resolved(UserEntity entity) {
+    public static List<LinkType> resolved(ArticleEntity entity) {
         List<LinkType> links = new ArrayList<>();
 
 

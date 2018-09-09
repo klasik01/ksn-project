@@ -1,9 +1,7 @@
 package ejb;
 
-import com.querydsl.jpa.impl.JPAQuery;
 import entity.ArticleEntity;
 import entity.CommentEntity;
-import entity.QCommentEntity;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.*;
@@ -24,12 +22,12 @@ public class CommentManager extends AbstractEntityManager {
         return null;
     }
 
-    public List<CommentEntity> getComments() {
-        final JPAQuery<CommentEntity> query = new JPAQuery<CommentEntity>(em);
-        final QCommentEntity comment = QCommentEntity.commentEntity;
-
-        return query.from(comment).fetch();
-    }
+//    public List<CommentEntity> getComments() {
+//        final JPAQuery query = new JPAQuery(em);
+//        final QCommentEntity comment = QCommentEntity.commentEntity;
+//
+//        return query.from(comment).fetch();
+//    }
 
     public void saveComment(CommentEntity entity) {
         em.getTransaction().begin();
