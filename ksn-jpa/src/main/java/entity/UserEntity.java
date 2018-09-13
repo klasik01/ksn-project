@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @ToString(exclude = "articles")
 @Table(name = "usr01_user")
-public class UserEntity extends AbstractEntity {
+public class UserEntity extends AbstractEntity implements Serializable {
 
     @Column(name = "usr01_name")
     private String name;

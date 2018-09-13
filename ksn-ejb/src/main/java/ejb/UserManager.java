@@ -3,14 +3,13 @@ package ejb;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQuery;
+import dto.user.UsersRequest;
 import entity.QUserEntity;
 import entity.UserEntity;
 import lombok.NoArgsConstructor;
-import rs.user.User;
 import rs.user.Users;
 
 import javax.ejb.*;
-import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor
@@ -61,7 +60,7 @@ public class UserManager extends AbstractQueryManager {
         return query.from(user).where(user.email.eq(email)).fetch();
     }
 
-    public Users loadUsers() {
+    public Users loadUsers(UsersRequest req) {
         QUserEntity user = QUserEntity.userEntity;
         BooleanExpression condition = Expressions.asBoolean(true).isTrue();
         JPAQuery query = createBaseQuery(condition, user);
@@ -71,20 +70,20 @@ public class UserManager extends AbstractQueryManager {
         return Users.builder()
                 //.messages(messages)
                 .total((int) query.fetchCount())
-                .users(loadUsers(paging(query, 2, 2)))
+                .users(loadUsers(paging(query, req.getPerPage(), req.getPage())))
                 .build();
     }
 
-    public User loadUser(final String id) {
+    public UserEntity loadUser(final String id) {
+        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
         final QUserEntity user = QUserEntity.userEntity;
-        final BooleanExpression condition = Expressions.asBoolean(true).isTrue();
-        final JPAQuery<UserEntity> query = createBaseQuery(condition, user);
-        return null; //UserEntityConverter.toDto(query.fetchOne());
+
+        return query.from(user).where(user.id.eq(id)).fetchOne();
     }
 
     private List<UserEntity> loadUsers(JPAQuery select) {
+        final QUserEntity user = QUserEntity.userEntity;
         return select.fetch();
     }
-
 
 }

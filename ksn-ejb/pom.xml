@@ -49,17 +49,6 @@
             <artifactId>javax.interceptor-api</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.mysema.querydsl</groupId>-->
-            <!--<artifactId>querydsl-jpa</artifactId>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.mysema.querydsl/querydsl-apt &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>com.mysema.querydsl</groupId>-->
-            <!--<artifactId>querydsl-apt</artifactId>-->
-        <!--</dependency>-->
-
         <!-- QueryDSL -->
         <dependency>
             <groupId>com.querydsl</groupId>

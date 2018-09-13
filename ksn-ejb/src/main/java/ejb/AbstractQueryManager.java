@@ -14,7 +14,7 @@ public class AbstractQueryManager extends AbstractEntityManager {
 
     protected JPAQuery createBaseQuery(BooleanExpression condition, EntityPathBase qEntity) {
         JPAQuery select = new JPAQuery(em);
-        return (JPAQuery) select.from(qEntity)
+        return (JPAQuery) select.select(qEntity).from(qEntity)
                 .where(condition);
     }
 
