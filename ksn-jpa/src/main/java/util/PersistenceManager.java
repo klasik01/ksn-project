@@ -9,7 +9,7 @@ public enum PersistenceManager {
 
     private EntityManagerFactory entityManagerFactory;
 
-    private PersistenceManager() {
+    PersistenceManager() {
         entityManagerFactory = Persistence.createEntityManagerFactory("ksn-jpa");
     }
 

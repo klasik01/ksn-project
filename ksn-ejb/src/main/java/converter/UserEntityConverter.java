@@ -1,11 +1,10 @@
 package converter;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.MappingProjection;
+import com.mysema.query.Tuple;
+import com.mysema.query.types.Expression;
+import com.mysema.query.types.MappingProjection;
 import dto.LinksUserCalculator;
 import entity.QUserEntity;
-import entity.UserEntity;
 import rs.user.User;
 
 import java.util.UUID;
@@ -18,21 +17,15 @@ public class UserEntityConverter extends MappingProjection<User> {
 
     @Override
     protected User map(Tuple tuple) {
-        UserEntity entity = tuple.get(QUserEntity.userEntity);
-
-        return toDto(entity);
+        final QUserEntity user = QUserEntity.userEntity;
+        return User.builder()
+                .id(UUID.fromString(tuple.get(user.id)))
+                .name(tuple.get(user.name))
+                .surname(tuple.get(user.surname))
+                .email(tuple.get(user.email))
+                .active(true)
+                .links(LinksUserCalculator.resolved(new User()))
+                .build();
     }
 
-    public static User toDto(UserEntity entity) {
-        User model = new User();
-        model.setId(UUID.fromString(entity.getId()));
-        model.setName(entity.getName());
-        model.setSurname(entity.getSurname());
-        model.setEmail(entity.getEmail());
-        model.setPassword(entity.getPassword());
-        model.setActive(entity.isActive());
-        model.setLinks(LinksUserCalculator.resolved(entity));
-
-        return model;
-    }
 }

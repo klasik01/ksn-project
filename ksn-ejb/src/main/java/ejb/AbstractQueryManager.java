@@ -1,8 +1,8 @@
 package ejb;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.EntityPathBase;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.mysema.query.jpa.impl.JPAQuery;
+import com.mysema.query.types.expr.BooleanExpression;
+import com.mysema.query.types.path.EntityPathBase;
 
 /**
  * class AbstractQueryManager
@@ -14,7 +14,7 @@ public class AbstractQueryManager extends AbstractEntityManager {
 
     protected JPAQuery createBaseQuery(BooleanExpression condition, EntityPathBase qEntity) {
         JPAQuery select = new JPAQuery(em);
-        return (JPAQuery) select.select(qEntity).from(qEntity)
+        return select.from(qEntity)
                 .where(condition);
     }
 

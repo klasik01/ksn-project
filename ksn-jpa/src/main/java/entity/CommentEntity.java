@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author Stanislav Kasika
@@ -18,7 +19,8 @@ public class CommentEntity extends AbstractEntity {
     private String content;
 
     @Column(name = "art02_date")
-    private Timestamp date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "art02_author")
@@ -28,7 +30,7 @@ public class CommentEntity extends AbstractEntity {
     @JoinColumn(name = "art02_article")
     private ArticleEntity article;
 
-    public CommentEntity(String id, String content, UserEntity author, Timestamp date, ArticleEntity article) {
+    public CommentEntity(String id, String content, UserEntity author, Date date, ArticleEntity article) {
         super(id);
         this.content = content;
         this.author = author;

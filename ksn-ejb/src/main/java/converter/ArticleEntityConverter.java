@@ -1,8 +1,8 @@
 package converter;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.MappingProjection;
+import com.mysema.query.Tuple;
+import com.mysema.query.types.Expression;
+import com.mysema.query.types.MappingProjection;
 import dto.LinksArticleCalculator;
 import entity.ArticleEntity;
 import entity.QArticleEntity;

@@ -5,6 +5,7 @@ import dto.user.UsersRequest;
 import ejb.UserManager;
 import entity.UserEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.user.User;
 import rs.user.Users;
 
 import javax.ws.rs.Produces;
@@ -20,14 +21,13 @@ public class UserProvider {
     @GetMapping(path = "/profile/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public @ResponseBody
-    UserEntity loadUser(@PathVariable("id") String id) {
+    User loadUser(@PathVariable("id") String id) {
 
-        System.out.println(userManager.loadUser(id));
-        UserEntity user = userManager.loadUser(id);
-        if (user == null) {
-            return null;
-        }
-        return user;
+       return userManager.loadUser(id);
+//        if (user == null) {
+//            return null;
+//        }
+//        return user;
     }
 
 
@@ -38,7 +38,7 @@ public class UserProvider {
                     @RequestParam("per_page") String per_page,
                     @RequestParam("filter") String filter) {
 
-        Users users = userManager.loadUsers(
+        return userManager.loadUsers(
                 UsersRequest.builder()
                         .locale(Locale.ENGLISH)
                         .page(Integer.parseInt(page))
@@ -47,7 +47,6 @@ public class UserProvider {
                         .filter(new UserFilter(filter))
                         .build()
         );
-        return users;
     }
 
 }

@@ -1,5 +1,7 @@
 package ejb;
 
+import com.mysema.query.types.expr.BooleanExpression;
+import entity.QUserEntity;
 import lombok.NoArgsConstructor;
 import util.PersistenceManager;
 
@@ -15,4 +17,7 @@ public abstract class AbstractEntityManager {
 
     protected EntityManager em = PersistenceManager.INSTANCE.getEntityManager();
 
+    protected BooleanExpression conditionActiveUser(QUserEntity user) {
+        return user.active.eq(true);
+    }
 }

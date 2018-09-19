@@ -1,19 +1,19 @@
 package entity;
 
-import static com.querydsl.core.types.PathMetadataFactory.*;
+import static com.mysema.query.types.PathMetadataFactory.*;
 
-import com.querydsl.core.types.dsl.*;
+import com.mysema.query.types.path.*;
 
-import com.querydsl.core.types.PathMetadata;
+import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
+import com.mysema.query.types.Path;
+import com.mysema.query.types.path.PathInits;
 
 
 /**
  * QArticleEntity is a Querydsl query type for ArticleEntity
  */
-@Generated("com.querydsl.codegen.EntitySerializer")
+@Generated("com.mysema.query.codegen.EntitySerializer")
 public class QArticleEntity extends EntityPathBase<ArticleEntity> {
 
     private static final long serialVersionUID = 1491915150L;
@@ -40,22 +40,22 @@ public class QArticleEntity extends EntityPathBase<ArticleEntity> {
     public final StringPath name = createString("name");
 
     public QArticleEntity(String variable) {
-        this(ArticleEntity.class, forVariable(variable), INITS);
+        this(ArticleEntity.class,  forVariable(variable), INITS);
     }
 
     public QArticleEntity(Path<? extends ArticleEntity> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QArticleEntity(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
+    public QArticleEntity(PathMetadata<?> metadata) {
+        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
     }
 
-    public QArticleEntity(PathMetadata metadata, PathInits inits) {
-        this(ArticleEntity.class, metadata, inits);
+    public QArticleEntity(PathMetadata<?> metadata, PathInits inits) {
+        this(ArticleEntity.class,  metadata, inits);
     }
 
-    public QArticleEntity(Class<? extends ArticleEntity> type, PathMetadata metadata, PathInits inits) {
+    public QArticleEntity(Class<? extends ArticleEntity> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.author = inits.isInitialized("author") ? new QUserEntity(forProperty("author")) : null;
     }

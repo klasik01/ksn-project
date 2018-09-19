@@ -1,12 +1,14 @@
 package ejb;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Expressions;
-import com.querydsl.jpa.impl.JPAQuery;
+
+import com.mysema.query.jpa.impl.JPAQuery;
+import com.mysema.query.types.expr.BooleanExpression;
+import converter.UserEntityConverter;
 import dto.user.UsersRequest;
 import entity.QUserEntity;
 import entity.UserEntity;
 import lombok.NoArgsConstructor;
+import rs.user.User;
 import rs.user.Users;
 
 import javax.ejb.*;
@@ -14,18 +16,9 @@ import java.util.List;
 
 @NoArgsConstructor
 @Stateless
-//@Interceptors({MeasuringInterceptor.class, LoggingInterceptor.class})
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 @TransactionAttribute(value = TransactionAttributeType.REQUIRED)
 public class UserManager extends AbstractQueryManager {
-
-    public List<UserEntity> getUsers() {
-        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
-        final QUserEntity user = QUserEntity.userEntity;
-
-        return query.from(user).fetch();
-    }
-
 
     public void saveUser(UserEntity entity) {
         em.getTransaction().begin();
@@ -39,51 +32,44 @@ public class UserManager extends AbstractQueryManager {
         em.getTransaction().commit();
     }
 
-    public List<UserEntity> findUsersByFirstnameQueryDSL(final String firstname) {
-        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
-        final QUserEntity user = QUserEntity.userEntity;
-
-        return query.from(user).where(user.name.eq(firstname)).fetch();
-    }
-
-    public List<UserEntity> findUsersByFirstnameAndSurnameQueryDSL(final String firstname, final String surname) {
-        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
-        final QUserEntity user = QUserEntity.userEntity;
-
-        return query.from(user).where(user.name.eq(firstname).and(user.surname.eq(surname))).fetch();
-    }
-
-    public List<UserEntity> findUsersByEmailQueryDSL(final String email) {
-        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
-        final QUserEntity user = QUserEntity.userEntity;
-
-        return query.from(user).where(user.email.eq(email)).fetch();
-    }
-
     public Users loadUsers(UsersRequest req) {
         QUserEntity user = QUserEntity.userEntity;
-        BooleanExpression condition = Expressions.asBoolean(true).isTrue();
+        BooleanExpression condition = BooleanExpression.allOf(
+                this.conditionActiveUser(user)
+        );
         JPAQuery query = createBaseQuery(condition, user);
         query.orderBy(user.surname.asc());
         query.distinct();
 
         return Users.builder()
-                //.messages(messages)
-                .total((int) query.fetchCount())
+                .total((int) query.count())
                 .users(loadUsers(paging(query, req.getPerPage(), req.getPage())))
                 .build();
     }
 
-    public UserEntity loadUser(final String id) {
-        final JPAQuery<UserEntity> query = new JPAQuery<UserEntity>(em);
-        final QUserEntity user = QUserEntity.userEntity;
-
-        return query.from(user).where(user.id.eq(id)).fetchOne();
+    public User loadUser(final String uuid) {
+        return loadUser(findByUuid(uuid));
     }
 
-    private List<UserEntity> loadUsers(JPAQuery select) {
+    private User loadUser(JPAQuery select) {
         final QUserEntity user = QUserEntity.userEntity;
-        return select.fetch();
+        return select.singleResult(new UserEntityConverter(User.class, user, user.id, user.name, user.surname, user.email, user.active));
+    }
+
+    private JPAQuery findByUuid(final String uuid) {
+        final QUserEntity user = QUserEntity.userEntity;
+        BooleanExpression condition = user.id.stringValue().eq(uuid);
+        final JPAQuery select = createBaseQuery(condition, user);
+        if (select.notExists()) {
+            throw new RuntimeException(String.format("User %s not found", uuid));
+        }
+
+        return select;
+    }
+
+    private List<User> loadUsers(JPAQuery select) {
+        final QUserEntity user = QUserEntity.userEntity;
+        return select.list(new UserEntityConverter(User.class, user, user, user.id, user.name, user.surname, user.email, user.active));
     }
 
 }

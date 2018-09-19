@@ -1,7 +1,6 @@
 package rs.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import entity.UserEntity;
 import lombok.*;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,5 +19,5 @@ import java.util.List;
 @ToString
 public class Users {
     private int total;
-    private List<UserEntity> users;
+    private List<User> users;
 }

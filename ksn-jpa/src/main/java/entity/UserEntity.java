@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@ToString(exclude = "articles")
+@ToString(exclude = "articles", callSuper = true)
 @Table(name = "usr01_user")
 public class UserEntity extends AbstractEntity implements Serializable {
 
@@ -29,16 +29,16 @@ public class UserEntity extends AbstractEntity implements Serializable {
     @Column(name = "usr01_active")
     private boolean active;
 
-    @OneToMany(mappedBy = "author", orphanRemoval = true)
-    @OrderBy("date ASC")
-    private List<ArticleEntity> articles;
-
-    public List<ArticleEntity> getArticles() {
-        if (articles == null) {
-            articles = new ArrayList<>();
-        }
-        return articles;
-    }
+//    @OneToMany(mappedBy = "author", orphanRemoval = true)
+//    @OrderBy("date ASC")
+//    private List<ArticleEntity> articles;
+//
+//    public List<ArticleEntity> getArticles() {
+//        if (articles == null) {
+//            articles = new ArrayList<>();
+//        }
+//        return articles;
+//    }
 
     public UserEntity() {
         super();

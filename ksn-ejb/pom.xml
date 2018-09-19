@@ -22,19 +22,14 @@
             <artifactId>ksn-jpa</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-entitymanager</artifactId>-->
+        <!--</dependency>-->
 
         <!--<dependency>-->
-        <!--<groupId>javax</groupId>-->
-        <!--<artifactId>javaee-api</artifactId>-->
+            <!--<groupId>org.postgresql</groupId>-->
+            <!--<artifactId>postgresql</artifactId>-->
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/javax.ejb/javax.ejb-api -->
@@ -44,19 +39,19 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.interceptor/javax.interceptor-api -->
-        <dependency>
-            <groupId>javax.interceptor</groupId>
-            <artifactId>javax.interceptor-api</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.interceptor</groupId>-->
+            <!--<artifactId>javax.interceptor-api</artifactId>-->
+        <!--</dependency>-->
 
         <!-- QueryDSL -->
         <dependency>
-            <groupId>com.querydsl</groupId>
+            <groupId>com.mysema.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.querydsl</groupId>
+            <groupId>com.mysema.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
         </dependency>
 
@@ -65,12 +60,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
-            <scope>compile</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.persistence</groupId>-->
+            <!--<artifactId>javax.persistence-api</artifactId>-->
+            <!--<version>2.2</version>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>klasik.source</groupId>
             <artifactId>ksn-dto</artifactId>

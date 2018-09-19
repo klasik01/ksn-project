@@ -1,6 +1,7 @@
 package entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,12 +9,13 @@ import java.io.Serializable;
 @Data
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@ToString
 @SuppressWarnings("serial")
 public abstract class AbstractEntity implements Serializable {
 
     @Id
     @Column (name = "table_id")
-    private String id;
+    protected String id;
 
     protected AbstractEntity(String id) {
         this.id = id;

@@ -26,7 +26,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>klasik.source</groupId>
                 <artifactId>ksn-jpa</artifactId>
@@ -51,11 +50,11 @@
                 <version>1.0</version>
             </dependency>
 
-            <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>2.3.0</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>javax.xml.bind</groupId>-->
+                <!--<artifactId>jaxb-api</artifactId>-->
+                <!--<version>2.3.0</version>-->
+            <!--</dependency>-->
 
             <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
             <dependency>
@@ -65,25 +64,28 @@
                 <scope>provided</scope>
             </dependency>
 
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.11</version>
-            </dependency>
-
             <!-- QueryDSL -->
             <dependency>
-                <groupId>com.querydsl</groupId>
+                <groupId>com.mysema.querydsl</groupId>
+                <artifactId>querydsl-apt</artifactId>
+                <version>3.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mysema.querydsl</groupId>
                 <artifactId>querydsl-jpa</artifactId>
-                <version>4.2.1</version>
+                <version>3.3.0</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>hibernate-jpa-2.0-api</artifactId>
+                        <groupId>org.hibernate.javax.persistence</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
-            <dependency>
-                <groupId>com.querydsl</groupId>
-                <artifactId>querydsl-apt</artifactId>
-                <version>4.2.1</version>
-                <scope>provided</scope>
-            </dependency>
 
             <!-- JPA Persistence Dependencies -->
             <dependency>
@@ -99,28 +101,28 @@
                 <scope>compile</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.1-api</artifactId>
-                <version>1.0.2.Final</version>
-                <scope>compile</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+                <!--<artifactId>hibernate-jpa-2.1-api</artifactId>-->
+                <!--<version>1.0.2.Final</version>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>commons-dbcp</groupId>
-                <artifactId>commons-dbcp</artifactId>
-                <version>1.4</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>commons-dbcp</groupId>-->
+                <!--<artifactId>commons-dbcp</artifactId>-->
+                <!--<version>1.4</version>-->
+                <!--<type>jar</type>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>commons-pool</groupId>
-                <artifactId>commons-pool</artifactId>
-                <version>1.6</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>commons-pool</groupId>-->
+                <!--<artifactId>commons-pool</artifactId>-->
+                <!--<version>1.6</version>-->
+                <!--<type>jar</type>-->
+                <!--<scope>compile</scope>-->
+            <!--</dependency>-->
 
             <!-- https://mvnrepository.com/artifact/javax.ejb/javax.ejb-api -->
             <dependency>
@@ -130,11 +132,11 @@
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/javax.interceptor/javax.interceptor-api -->
-            <dependency>
-                <groupId>javax.interceptor</groupId>
-                <artifactId>javax.interceptor-api</artifactId>
-                <version>1.2.2</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>javax.interceptor</groupId>-->
+                <!--<artifactId>javax.interceptor-api</artifactId>-->
+                <!--<version>1.2.2</version>-->
+            <!--</dependency>-->
 
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
             <dependency>

@@ -23,7 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @Getter
 @ToString
-@Slf4j
 public class UserFilter {
     private String country = "";
 
@@ -39,7 +38,7 @@ public class UserFilter {
                     UserFilter.class.getDeclaredField(filterParts[0]).set(this, StringUtils.trimToEmpty(filterParts[1]));
                 }
             } catch (NoSuchFieldException e) {
-                log.error("Unknown field for filtering of audit periods has been received: {}", filterParts[0], e);
+                //log.error("Unknown field for filtering of audit periods has been received: {}", filterParts[0], e);
             }
         }
     }

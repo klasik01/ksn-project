@@ -1,19 +1,18 @@
 package entity;
 
-import static com.querydsl.core.types.PathMetadataFactory.*;
+import static com.mysema.query.types.PathMetadataFactory.*;
 
-import com.querydsl.core.types.dsl.*;
+import com.mysema.query.types.path.*;
 
-import com.querydsl.core.types.PathMetadata;
+import com.mysema.query.types.PathMetadata;
 import javax.annotation.Generated;
-import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
+import com.mysema.query.types.Path;
 
 
 /**
  * QUserEntity is a Querydsl query type for UserEntity
  */
-@Generated("com.querydsl.codegen.EntitySerializer")
+@Generated("com.mysema.query.codegen.EntitySerializer")
 public class QUserEntity extends EntityPathBase<UserEntity> {
 
     private static final long serialVersionUID = 1342460569L;
@@ -23,8 +22,6 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
     public final QAbstractEntity _super = new QAbstractEntity(this);
 
     public final BooleanPath active = createBoolean("active");
-
-    public final ListPath<ArticleEntity, QArticleEntity> articles = this.<ArticleEntity, QArticleEntity>createList("articles", ArticleEntity.class, QArticleEntity.class, PathInits.DIRECT2);
 
     public final StringPath email = createString("email");
 
@@ -38,15 +35,15 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
     public final StringPath surname = createString("surname");
 
     public QUserEntity(String variable) {
-        super(UserEntity.class, forVariable(variable));
+        super(UserEntity.class,  forVariable(variable));
     }
 
     public QUserEntity(Path<? extends UserEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QUserEntity(PathMetadata metadata) {
-        super(UserEntity.class, metadata);
+    public QUserEntity(PathMetadata<?> metadata) {
+        super(UserEntity.class,  metadata);
     }
 
 }
